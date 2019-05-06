@@ -1,7 +1,7 @@
 httpie-kong-hmac
 ================
 
-OAuth plugin for `HTTPie <https://httpie.org/>`_.
+HMAC auth plugin for `HTTPie <https://httpie.org/>`_ and `Kong <https://konghq.com/>`_.
 
 It currently provides support for Kong Hmac
 
