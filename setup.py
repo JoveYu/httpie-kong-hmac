@@ -2,13 +2,14 @@ from setuptools import setup
 
 import httpie_kong_hmac
 
-with open("README.rst", "r") as fh:
+with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
     name='httpie-kong-hmac',
     description='Kong Hmac plugin for HTTPie.',
     long_description = long_description,
+    long_description_content_type='text/markdown',
     version=httpie_kong_hmac.__version__,
     author=httpie_kong_hmac.__author__,
     author_email='yushijun110@126.com',
