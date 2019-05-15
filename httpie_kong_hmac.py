@@ -12,7 +12,7 @@ __license__ = 'MIT'
 
 class KongHMAC:
     def __init__(self, username, password, algorithm='hmac-sha256',
-                 headers=['date', 'request-line','digest'], charset='utf-8'):
+                 headers=['request-line', 'date', 'digest'], charset='utf-8'):
         self.username = username
         self.password = password
         self.algorithm = algorithm
