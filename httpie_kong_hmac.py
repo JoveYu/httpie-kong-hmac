@@ -6,7 +6,7 @@ import hmac
 
 from httpie.plugins import AuthPlugin
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 __author__ = 'Jove Yu'
 __license__ = 'MIT'
 
@@ -54,7 +54,7 @@ class KongHMAC:
             sign += '\n'
 
         h = hmac.new(self.password.encode(self.charset), sign[:-1].encode(self.charset),
-                     self.algorithm[5:])
+                     getattr(hashlib, self.algorithm[5:]))
         return base64.b64encode(h.digest()).decode(self.charset)
 
     def get_body_digest(self, r):
