@@ -6,7 +6,7 @@ import hmac
 
 from httpie.plugins import AuthPlugin
 
-__version__ = '0.0.2'
+__version__ = '0.0.3'
 __author__ = 'Jove Yu'
 __license__ = 'MIT'
 
@@ -16,7 +16,7 @@ class KongHMAC:
         self.username = username
         self.password = password
         self.algorithm = algorithm
-        self.headers = headers
+        self.headers = headers.copy()
         self.charset = charset
 
         self.auth_template = 'hmac username="{}", algorithm="{}", headers="{}", signature="{}"'
@@ -31,7 +31,8 @@ class KongHMAC:
         if 'digest' in self.headers and r.body:
             r.headers['Digest'] = 'SHA-256={}'.format(self.get_body_digest(r))
         else:
-            self.headers.remove('digest')
+            if 'digest' in self.headers:
+                self.headers.remove('digest')
 
         # get sign
         sign = self.get_sign(r)
