@@ -7,7 +7,7 @@ import traceback
 
 from httpie.plugins import AuthPlugin
 
-__version__ = '0.0.5'
+__version__ = '0.0.6'
 __author__ = 'Jove Yu'
 __license__ = 'MIT'
 
@@ -63,7 +63,10 @@ class KongHMAC:
 
     def get_body_digest(self, r):
         if r.body:
-            h = hashlib.sha256(r.body.encode(self.charset))
+            if isinstance(r.body, bytes):
+                h = hashlib.sha256(r.body)
+            else:
+                h = hashlib.sha256(r.body.encode(self.charset))
             return base64.b64encode(h.digest()).decode(self.charset)
         return ''
 
